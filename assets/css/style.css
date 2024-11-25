@@ -1,0 +1,19 @@
+/* css/style.css or your main CSS file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.template-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.template-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+    border: 3px solid #1D4ED8; /* Blue border for the selected template */
+    box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+}
+
