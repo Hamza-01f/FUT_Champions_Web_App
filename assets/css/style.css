@@ -1,19 +1,240 @@
-/* css/style.css or your main CSS file */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.template-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* General page layout and styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
 }
 
-.template-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Main Section */
+.main-section {
+    background-image: url('../Images/IMG-20241002-WA0030.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.selected {
-    border: 3px solid #1D4ED8; /* Blue border for the selected template */
-    box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+/* Container */
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
 }
 
+/* First Row */
+.first-row {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 20px;
+    height: 100%;
+}
+
+/* Formation Field (left) */
+.field {
+    display: grid;
+    background-image: url('../Images/stadium_background.webp');
+    background-size: cover;
+    background-position: center;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    height: 700px;
+    border-radius: 5px;
+}
+
+
+.formation-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+
+.player-rw, .player-st, .player-lw, .player-cm, .player-lb, .player-cb, .player-gk, .player-rb {
+    background-image: url('../Images/badge_gold.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.player-form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+/* Scrollable Form */
+.player-form {
+    overflow-y: auto;
+    max-height: 100%;
+    padding-right: 10px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Form Selection Buttons */
+.selection-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 48%;
+    margin: 10px 1%;
+    transition: background-color 0.3s;
+}
+
+.selection-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Bench Section */
+.second-row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.bench {
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For Tablets and below (min-width: 600px) */
+@media screen and (max-width: 1024px) {
+   
+    .first-row {
+        grid-template-columns: 1fr;
+    }
+
+    .field {
+        height: 500px;
+    }
+
+
+    .player-form-container {
+        max-width: 500px;
+    }
+
+   
+    input, select {
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+    }
+
+    .selection-btn {
+        width: 100%; 
+        margin: 10px 0;
+    }
+}
+
+/* For Mobile Devices (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  
+    .main-section {
+        padding: 10px;
+    }
+
+
+    .first-row {
+        grid-template-columns: 1fr;
+    }
+
+    
+    .field {
+        height: 350px;
+    }
+
+
+    .player-form-container {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    
+    input, select {
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .selection-btn {
+        width: 100%; 
+        margin: 10px 0;
+    }
+
+    
+    .second-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bench {
+        font-size: 0.9rem;
+    }
+}
