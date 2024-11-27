@@ -26,7 +26,7 @@ body, html {
     background-position: center; 
     background-repeat: no-repeat; 
     width: 90%; 
-    height: 110%; 
+    height: 120%; 
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ body, html {
 
 
 .formation-cell:hover {
-    transform: scale(2.2); /
+    transform: scale(2.4); /
 }
 
 form .form-group p {
@@ -185,6 +185,93 @@ button:hover {
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
+
+/* carte styling*/
+
+.cart {
+    width: fit-content;
+    height: fit-content;
+}
+
+.cartPerent {
+    background-image: url(/src/assets/img/badge_gold.webp);
+    background-position: center ;
+    background-size: cover;
+    width: 5rem;
+    height: 6rem;
+}
+.image {
+    width: 5rem;
+    height: 6rem;
+    background: green;
+}
+
+.imagedejeue {
+    width: fit-content;
+}
+.imagedejeue img {
+    width: 2rem;
+    height: 2rem;
+   position: relative;
+   left: 1.5rem;
+}
+
+.pawordeJeur {
+    display: flex;
+    justify-content: space-around;
+    width: 3.50rem;
+    margin: auto;
+    position: relative;
+    top: 1.3rem;
+   
+    
+}
+
+.footerDecart {
+    display: flex;
+    justify-content: center;
+
+
+}
+.nomeDejer h3 {
+  font-size: 0.5rem;
+  width: fit-content;
+  margin: auto ;
+  position: relative;
+  bottom: 4px;
+}
+
+.pawordeJeur div div {
+    font-size: 5px;
+    position: relative;
+    bottom: 1.7rem;
+
+}
+.footerDecart {
+    position: absolute;
+
+}
+.footerDecart img {
+    width: 10px;
+    margin-left: 2px;
+    position: relative;
+    left: 1.6rem ;
+    bottom: 0.3rem;
+}
+.toutal {
+    width: fit-content;
+    position: relative;
+    top: 1rem;
+    left: 0.9rem;
+}
+
+.toutal h3 {
+    font-size: 0.70rem;
+}
+.toutal p {
+    font-size: 0.5rem;
+} 
+/* cart start END */
 
 /* Media Queries for Responsiveness */
 
