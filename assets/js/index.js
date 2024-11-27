@@ -76,4 +76,14 @@ addPlayer.addEventListener('click', function(event) {
     }
 });
 
+//------------------------[Add Goalkeeper Form Submission Logic]------------------------
+addGoalkeeper.addEventListener('click', function(event) {
+    event.preventDefault();
 
+    const { valid, formData: goalkeeperData } = validateForm(GoalkeepersForm);
+
+    if (valid) {
+        formData.push(goalkeeperData);
+        console.log('Goalkeeper added:', goalkeeperData);  
+    }
+});
