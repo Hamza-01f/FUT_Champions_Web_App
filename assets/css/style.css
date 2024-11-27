@@ -7,31 +7,49 @@ body, html {
     box-sizing: border-box;
 }
 
-/* Main Section */
-.main-section {
+/* Container */
+.container {
     background-image: url('../Images/IMG-20241002-WA0030.jpg');
     background-size: cover;
     background-position: center;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Container */
-.container {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: 75% 25%;  
     gap: 20px;
     width: 100%;
     height: 100%;
+    padding: 20px;
 }
+
+.formation-cell {
+    margin-left: 0.4rem;
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 90%; 
+    height: 110%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out; 
+}
+
+
+
+.formation-cell:hover {
+    transform: scale(2.2); /
+}
+
+form .form-group p {
+    color: red;          
+    font-size: 12px;     
+    margin-top: 5px;      
+}
+
 
 /* First Row */
 .first-row {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 70% 30%; 
     gap: 20px;
     height: 100%;
 }
@@ -42,35 +60,27 @@ body, html {
     background-image: url('../Images/stadium_background.webp');
     background-size: cover;
     background-position: center;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 2px;
     width: 100%;
-    height: 700px;
+    height: 100%;
     border-radius: 5px;
 }
 
 
-.formation-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-}
 
 
-.player-rw, .player-st, .player-lw, .player-cm, .player-lb, .player-cb, .player-gk, .player-rb {
+
+.bench{
     background-image: url('../Images/badge_gold.webp');
     background-size: cover;
     background-position: center;
 }
 
-
+/* Form container (right) */
 .player-form-container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(199, 191, 191, 0.9);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -80,16 +90,25 @@ body, html {
     flex-direction: column;
     max-height: 80vh;
     overflow: hidden;
+    height: 100%; 
+    box-sizing: border-box;
+}
+
+/* Ensure player form occupies full height in its container */
+.player-selection-form, .player-form {
+    height: 100%;
 }
 
 /* Scrollable Form */
-.player-form {
+.player-form , .Goalkeeper-form {
+    scrollbar-width: none; 
     overflow-y: auto;
     max-height: 100%;
     padding-right: 10px;
 }
 
 
+/* Form Group Styling */
 .form-group {
     margin-bottom: 20px;
 }
@@ -122,7 +141,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #a9f3ad;
 }
 
 /* Form Selection Buttons */
@@ -145,24 +164,32 @@ button:hover {
 /* Bench Section */
 .second-row {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 10px;
-    padding: 20px;
+    border-radius: 6px;
+    border: white 2px solid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 5px;
+    padding: 15px;
 }
 
+/* Bench Items */
 .bench {
-    background-color: #f44336;
+  
     color: white;
     text-align: center;
     padding: 10px;
     border-radius: 5px;
 }
 
+.bench:hover {
+   background-color: #96d999;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
 /* Media Queries for Responsiveness */
 
 /* For Tablets and below (min-width: 600px) */
 @media screen and (max-width: 1024px) {
-   
     .first-row {
         grid-template-columns: 1fr;
     }
@@ -171,12 +198,10 @@ button:hover {
         height: 500px;
     }
 
-
     .player-form-container {
         max-width: 500px;
     }
 
-   
     input, select {
         padding: 10px;
     }
@@ -186,35 +211,30 @@ button:hover {
     }
 
     .selection-btn {
-        width: 100%; 
+        width: 100%;
         margin: 10px 0;
     }
 }
 
 /* For Mobile Devices (max-width: 600px) */
 @media screen and (max-width: 600px) {
-  
     .main-section {
         padding: 10px;
     }
-
 
     .first-row {
         grid-template-columns: 1fr;
     }
 
-    
     .field {
         height: 350px;
     }
-
 
     .player-form-container {
         max-width: 100%;
         padding: 20px;
     }
 
-    
     input, select {
         padding: 8px;
     }
@@ -225,11 +245,10 @@ button:hover {
     }
 
     .selection-btn {
-        width: 100%; 
+        width: 100%;
         margin: 10px 0;
     }
 
-    
     .second-row {
         grid-template-columns: 1fr 1fr;
     }
