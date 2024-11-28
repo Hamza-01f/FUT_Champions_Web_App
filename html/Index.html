@@ -16,17 +16,17 @@
         <!-- First Row -->
         <div class="first-row">
             <div class="field">
-                <div id="ST" class="formation-cell player-st col-start-3 row-start-1 " style="background-image: url('../assets/Images/badge_gold.webp');">ST</div>
-                <div id="ST" class="formation-cell player-lw col-start-2 row-start-2 " style="background-image: url('../assets/Images/badge_gold.webp');">LM</div>
-                <div id="LM" class="formation-cell player-cm col-start-5 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');">CM</div>
-                <div id="CM" class="formation-cell player-cm col-start-3 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');">CM</div>
-                <div id="CM" class="formation-cell player-cm col-start-5 row-start-1 " style="background-image: url('../assets/Images/badge_gold.webp');">ST</div>
-                <div id="RM" class="formation-cell player-rw col-start-6 row-start-2 " style="background-image: url('../assets/Images/badge_gold.webp');">RM</div>
-                <div id="LB" class="formation-cell player-lb col-start-1 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');">LB</div>
-                <div id="CB" class="formation-cell player-cb col-start-5 row-start-4 " style="background-image: url('../assets/Images/badge_gold.webp');">CB</div>
-                <div id="CB" class="formation-cell player-cb col-start-3 row-start-4 " style="background-image: url('../assets/Images/badge_gold.webp');">CB</div>
-                <div id="RB" class="formation-cell player-rb col-start-7 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');">RB</div>
-                <div id="GK" class="formation-cell player-gk col-start-4 row-start-5 " style="background-image: url('../assets/Images/badge_gold.webp');"><body>
+                <div id="ST" class="formation-cell player-st col-start-3 row-start-1 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="LM" class="formation-cell player-lw col-start-2 row-start-2 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="CM" class="formation-cell player-cm col-start-5 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="CM" class="formation-cell player-cm col-start-3 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="ST" class="formation-cell player-cm col-start-5 row-start-1 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="RM" class="formation-cell player-rw col-start-6 row-start-2 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="LB" class="formation-cell player-lb col-start-1 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="CB" class="formation-cell player-cb col-start-5 row-start-4 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="CB" class="formation-cell player-cb col-start-3 row-start-4 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="RB" class="formation-cell player-rb col-start-7 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
+                <div id="GK" class="formation-cell player-gk col-start-4 row-start-5 " style="background-image: url('../assets/Images/badge_gold.webp');">
                     <!-- <div class="cart">
                         <div class="cartPerent">
                             <div>
@@ -80,7 +80,7 @@
             </div>
             
 
-            <div  class="player-form-container  bg-gradient-to-r from-green-500 to-yellow-300 rounded-lg p-4 shadow-lg">
+            <div  class="player-form-container  bg-green-600 rounded-lg p-4 shadow-lg">
               <!-- Main Player Type Selection Form -->
               <h2 id="click on card" class="text-3xl font-semibold text-center text-black animate__animated animate__fadeIn">CLICK ON PLAYER'S CARD POSITION </h2>
               
@@ -96,8 +96,8 @@
                       </div>
                       <!-- Player Photo -->
                       <div class="form-group">
-                          <label for="player-photo">Player Photo :</label>
-                          <input type="file" id="player-photo" name="player-photo" placeholder="Enter Player Photo URL">
+                          <label for="player-photo">Player Photo URL :</label>
+                          <input type="url" id="player-photo" name="player-photo" placeholder="Enter Player Photo URL">
                           <p></p>
                       </div>
                       <!-- Player Nationality -->
@@ -130,58 +130,58 @@
                       <!-- Nationality Flag -->
                       <div class="form-group">
                           <label for="player-flag">Nationality Flag :</label>
-                          <input type="file" id="player-flag" name="player-flag"  placeholder="Enter Flag Image URL">
-                          <p></p>
-                      </div>
-                      <!-- Player Club -->
-                      <div class="form-group">
-                          <label for="player-club">Club:</label>
-                          <input type="text" id="player-club" name="player-club"  placeholder="Enter Club">
+                          <input type="url" id="player-flag" name="player-flag"  placeholder="Enter Flag Image URL">
                           <p></p>
                       </div>
                       <!-- Club Logo -->
-                      <div class="form-group">
-                          <label for="player-logo">Club Logo :</label>
-                          <input type="file" id="player-logo" name="player-logo"  placeholder="Enter Club Logo URL">
-                          <p></p>
-                      </div>
-                      <!-- Player Rating -->
-                      <div class="form-group">
-                          <label for="player-rating">Rating:</label>
-                          <input type="number" id="player-rating" name="player-rating"  placeholder="Enter Rating (0-99)">
-                          <p></p>
-                      </div>
+                        <div class="form-group">
+                            <label for="player-logo">Club Logo :</label>
+                            <input type="url" id="player-logo" name="player-logo"  placeholder="Enter Club Logo URL">
+                            <p></p>
+                        </div>
+                        <!-- Player Rating -->
+                        <div class="form-group">
+                            <label for="player-rating">Rating:</label>
+                            <input type="number" id="player-rating" name="player-rating"  placeholder="Enter Rating (0-99)">
+                            <p></p>
+                        </div>
                       <!-- Player Attributes -->
-                      <div class="form-group">
-                          <label for="player-pace">Pace:</label>
-                          <input type="number" id="player-pace" name="player-pace"  placeholder="Enter Pace (0-99)">
-                          <p></p>
-                      </div>
-                      <div class="form-group">
-                          <label for="player-shooting">Shooting:</label>
-                          <input type="number" id="player-shooting" name="player-shooting"  placeholder="Enter Shooting (0-99)">
-                          <p></p>
-                      </div>
-                      <div class="form-group">
-                          <label for="player-passing">Passing:</label>
-                          <input type="number" id="player-passing" name="player-passing"  placeholder="Enter Passing (0-99)">
-                          <p></p>
-                      </div>
-                      <div class="form-group">
-                          <label for="player-dribbling">Dribbling:</label>
-                          <input type="number" id="player-dribbling" name="player-dribbling"  placeholder="Enter Dribbling (0-99)">
-                          <p></p>
-                      </div>
-                      <div class="form-group">
-                          <label for="player-defending">Defending:</label>
-                          <input type="number" id="player-defending" name="player-defending"  placeholder="Enter Defending (0-99)">
-                          <p></p>
-                      </div>
-                      <div class="form-group">
-                          <label for="player-physical">Physical:</label>
-                          <input type="number" id="player-physical" name="player-physical"  placeholder="Enter Physical (0-99)">
-                          <p></p>
-                      </div>
+                        <div class="flex">
+                            <div class="form-group">
+                                <label for="player-pace">Pace:</label>
+                                <input type="number" id="player-pace" name="player-pace"  placeholder="Enter Pace (0-99)">
+                                <p></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="player-shooting">Shooting:</label>
+                                <input type="number" id="player-shooting" name="player-shooting"  placeholder="Enter Shooting (0-99)">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="form-group">
+                                <label for="player-passing">Passing:</label>
+                                <input type="number" id="player-passing" name="player-passing"  placeholder="Enter Passing (0-99)">
+                                <p></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="player-dribbling">Dribbling:</label>
+                                <input type="number" id="player-dribbling" name="player-dribbling"  placeholder="Enter Dribbling (0-99)">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="flex ">
+                            <div class="form-group">
+                                <label for="player-defending">Defending:</label>
+                                <input type="number" id="player-defending" name="player-defending"  placeholder="Enter Defending (0-99)">
+                                <p></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="player-physical">Physical:</label>
+                                <input type="number" id="player-physical" name="player-physical"  placeholder="Enter Physical (0-99)">
+                                <p></p>
+                            </div>
+                        </div>
                       <!-- Submit Button -->
                       <button id="add-player" type="button">Add Player</button>
                   </form>
@@ -200,7 +200,7 @@
                     <!-- Goalkeeper Photo -->
                     <div class="form-group">
                         <label for="Goalkeeper-photo">Goalkeeper Photo :</label>
-                        <input type="file" id="Goalkeeper-photo" name="Goalkeeper-photo" required placeholder="Enter Goalkeeper Photo URL">
+                        <input type="url" id="Goalkeeper-photo" name="Goalkeeper-photo" required placeholder="Enter Goalkeeper Photo URL">
                         <p></p>
                     </div>
                     <!-- Goalkeeper Nationality -->
@@ -233,52 +233,52 @@
                     <!-- Nationality Flag -->
                     <div class="form-group">
                         <label for="Goalkeeper-flag">Nationality Flag :</label>
-                        <input type="file" id="Goalkeeper-flag" name="Goalkeeper-flag" required placeholder="Enter Flag Image URL">
-                        <p></p>
-                    </div>
-                    <!-- Goalkeeper Club -->
-                    <div class="form-group">
-                        <label for="Goalkeeper-club">Club:</label>
-                        <input type="text" id="Goalkeeper-club" name="Goalkeeper-club" required placeholder="Enter Club">
+                        <input type="url" id="Goalkeeper-flag" name="Goalkeeper-flag" required placeholder="Enter Flag Image URL">
                         <p></p>
                     </div>
                     <!-- Club Logo -->
                     <div class="form-group">
                         <label for="Goalkeeper-logo">Club Logo :</label>
-                        <input type="file" id="Goalkeeper-logo" name="Goalkeeper-logo" required placeholder="Enter Club Logo URL">
+                        <input type="url" id="Goalkeeper-logo" name="Goalkeeper-logo" required placeholder="Enter Club Logo URL">
                         <p></p>
                     </div>
-                    <!-- Goalkeeper Rating -->
-                    <div class="form-group">
-                        <label for="Goalkeeper-rating">Rating:</label>
-                        <input type="number" id="Goalkeeper-rating" name="Goalkeeper-rating" required placeholder="Enter Rating (0-99)">
-                        <p></p>
+                    <div class="flex">
+                         <!-- Goalkeeper Rating -->
+                        <div class="form-group">
+                            <label for="Goalkeeper-rating">Rating:</label>
+                            <input type="number" id="Goalkeeper-rating" name="Goalkeeper-rating" required placeholder="Enter Rating (0-99)">
+                            <p></p>
+                        </div>
+                        <!-- Goalkeeper Attributes -->
+                        <div class="form-group">
+                            <label for="Goalkeeper-pace">Diving:</label>
+                            <input type="number" id="Goalkeeper-pace" name="Goalkeeper-pace" required placeholder="Enter Diving (0-99)">
+                            <p></p>
+                       </div>
                     </div>
-                    <!-- Goalkeeper Attributes -->
-                    <div class="form-group">
-                        <label for="Goalkeeper-pace">Diving:</label>
-                        <input type="number" id="Goalkeeper-pace" name="Goalkeeper-pace" required placeholder="Enter Diving (0-99)">
-                        <p></p>
+                    <div class="flex">
+                        <div class="form-group">
+                            <label for="Goalkeeper-shooting">Handling:</label>
+                            <input type="number" id="Goalkeeper-shooting" name="Goalkeeper-shooting" required placeholder="Enter Handling (0-99)">
+                            <p></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="Goalkeeper-passing">Kicking:</label>
+                            <input type="number" id="Goalkeeper-passing" name="Goalkeeper-passing" required placeholder="Enter Kicking (0-99)">
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="Goalkeeper-shooting">Handling:</label>
-                        <input type="number" id="Goalkeeper-shooting" name="Goalkeeper-shooting" required placeholder="Enter Handling (0-99)">
-                        <p></p>
-                    </div>
-                    <div class="form-group">
-                        <label for="Goalkeeper-passing">Kicking:</label>
-                        <input type="number" id="Goalkeeper-passing" name="Goalkeeper-passing" required placeholder="Enter Kicking (0-99)">
-                        <p></p>
-                    </div>
-                    <div class="form-group">
-                        <label for="Goalkeeper-dribbling">Reflexes:</label>
-                        <input type="number" id="Goalkeeper-dribbling" name="Goalkeeper-dribbling" required placeholder="Enter Reflexes (0-99)">
-                        <p></p>
-                    </div>
-                    <div class="form-group">
-                        <label for="Goalkeeper-defending">Speed:</label>
-                        <input type="number" id="Goalkeeper-defending" name="Goalkeeper-defending" required placeholder="Enter Speed (0-99)">
-                        <p></p>
+                    <div class="flex">
+                        <div class="form-group">
+                            <label for="Goalkeeper-dribbling">Reflexes:</label>
+                            <input type="number" id="Goalkeeper-dribbling" name="Goalkeeper-dribbling" required placeholder="Enter Reflexes (0-99)">
+                            <p></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="Goalkeeper-defending">Speed:</label>
+                            <input type="number" id="Goalkeeper-defending" name="Goalkeeper-defending" required placeholder="Enter Speed (0-99)">
+                            <p></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="Goalkeeper-physical">Positionning:</label>
@@ -312,6 +312,7 @@
   
 
   <script src="../assets/js/index.js"></script>
+  <script src="../assets/js/miseEnSituation.js"></script>
   <link href="../assets/css/style.css" rel="stylesheet">
 
 </body>
