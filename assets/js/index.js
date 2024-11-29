@@ -280,7 +280,7 @@ function createPlayerCard(playerformData,position) {
 
 // --------------------- [Save to LocalStorage Function] -----------------------
 function saveToLocalStorage() {
-    localStorage.setItem('playerformData', JSON.stringify(formData)); // Save all formData to localStorage
+    localStorage.setItem('playerformData', JSON.stringify(formData)); // Save formData to localStorage
 }
 
 
