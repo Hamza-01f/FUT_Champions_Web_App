@@ -49,6 +49,7 @@ formationCells.forEach(cell => {
 
         // Hide the card selection
         clickOnCard.classList.add('hidden');
+        PlayerPosition.classList.add('hidden');
     });
 });
 
@@ -57,12 +58,14 @@ addKeeperToBench.addEventListener('click', function(event){
     event.preventDefault();
     goalkeeperForm.classList.remove('hidden');
     clickOnCard.classList.add('hidden');
+    allPlayerForm.classList.add('hidden');
 });
 
 addBenchPlayer.addEventListener('click', function(event){
     event.preventDefault();
     allPlayerForm.classList.remove('hidden');
     PlayerPosition.classList.remove('hidden');
+    goalkeeperForm.classList.add('hidden');
     clickOnCard.classList.add('hidden');
 
 })
@@ -194,34 +197,73 @@ addGoalkeeper.addEventListener('click', function(event) {
 function createPlayerCard(playerformData,position) {
     const positionCell = document.getElementById(playerformData.position); // Get the position cell dynamically
     // Check if the player card already exists in that position
-    const existingCard = positionCell.querySelector('.cart');
-    if (existingCard) {
-        positionCell.removeChild(existingCard); // Remove existing card if present
-    }
+//   const existingCard = positionCell.querySelector('.cart');
+//     if (existingCard) {
+//         positionCell.removeChild(existingCard); // Remove existing card if present
+//     }  
     
-    if(position === 'GK'){
-        const GoalKeeperInner = `
-        <div class="cartPerent">
+    if(position){
+        if(position === 'GK'){
+            const GoalKeeperInner = `
+            <div class="cartPerent">
+                <div>
+                    <div class="toutal">
+                        <div><h3>${playerformData.rating || 'N/A'}</h3></div>
+                        <div><p>${playerformData.position || 'Position'}</p></div>
+                    </div>
+                    <div class="imagedejeue">
+                        <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
+                    </div>
+                    <div class="nomeDejer flex pl-1">
+                        <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
+                        <h3>${playerformData.name || 'Player Name'}</h3>
+                    </div>
+                    <div class="pawordeJeur">
+                        <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
+                        <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
+                        <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
+                        <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
+                        <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
+                        <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
+                        <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
+                    </div>
+                    <div class="footerDecart">
+                        <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                        <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    
+        const playerCard = document.createElement('div');
+        playerCard.classList.add('cart');
+        playerCard.innerHTML = GoalKeeperInner;
+    
+        positionCell.appendChild(playerCard); 
+        }else {
+            const playerInner = `
+            <div class="cartPerent">
             <div>
                 <div class="toutal">
-                    <div><h3>${playerformData.rating || 'N/A'}</h3></div>
-                    <div><p>${playerformData.position || 'Position'}</p></div>
+                     <div><h3>${playerformData.rating || 'N/A'}</h3></div>
+                     <div><p>${playerformData.position || 'Position'}</p></div>
                 </div>
                 <div class="imagedejeue">
                     <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
                 </div>
-                <div class="nomeDejer flex pl-1">
-                    <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
+                <div class="nomeDejer flex ml-1">
+                    <h3>${playerformData.Nationality || 'Player Name'}</h3>
                     <h3>${playerformData.name || 'Player Name'}</h3>
                 </div>
                 <div class="pawordeJeur">
                     <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                    <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
-                    <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
+                    <div><div>pac</div><div>${playerformData.pace || '0'}</div></div>
+                    <div><div>sho</div><div>${playerformData.shooting || '0'}</div></div>
                     <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                    <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
-                    <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
-                    <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
+                    <div><div>pas</div><div>${playerformData.passing || '0'}</div></div>
+                    <div><div>dri</div><div>${playerformData.dribbling || '0'}</div></div>
+                    <div><div>def</div><div>${playerformData.defending || '0'}</div></div>
+                      <div><div>phy</div><div>${playerformData.physical || '0'}</div></div>
                 </div>
                 <div class="footerDecart">
                     <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
@@ -229,51 +271,18 @@ function createPlayerCard(playerformData,position) {
                 </div>
             </div>
         </div>
-    `;
+        `;
+        const playerCard = document.createElement('div');
+        playerCard.classList.add('cart');
+        playerCard.innerHTML = playerInner;
+    
+        positionCell.appendChild(playerCard); 
+        }
+    }else{
+      alert('no player to add')
 
-    const playerCard = document.createElement('div');
-    playerCard.classList.add('cart');
-    playerCard.innerHTML = GoalKeeperInner;
-
-    positionCell.appendChild(playerCard); 
-    }else {
-        const playerInner = `
-        <div class="cartPerent">
-        <div>
-            <div class="toutal">
-                 <div><h3>${playerformData.rating || 'N/A'}</h3></div>
-                 <div><p>${playerformData.position || 'Position'}</p></div>
-            </div>
-            <div class="imagedejeue">
-                <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
-            </div>
-            <div class="nomeDejer flex ml-1">
-                <h3>${playerformData.Nationality || 'Player Name'}</h3>
-                <h3>${playerformData.name || 'Player Name'}</h3>
-            </div>
-            <div class="pawordeJeur">
-                <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                <div><div>pac</div><div>${playerformData.pace || '0'}</div></div>
-                <div><div>sho</div><div>${playerformData.shooting || '0'}</div></div>
-                <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                <div><div>pas</div><div>${playerformData.passing || '0'}</div></div>
-                <div><div>dri</div><div>${playerformData.dribbling || '0'}</div></div>
-                <div><div>def</div><div>${playerformData.defending || '0'}</div></div>
-                  <div><div>phy</div><div>${playerformData.physical || '0'}</div></div>
-            </div>
-            <div class="footerDecart">
-                <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
-                <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
-            </div>
-        </div>
-    </div>
-    `;
-    const playerCard = document.createElement('div');
-    playerCard.classList.add('cart');
-    playerCard.innerHTML = playerInner;
-
-    positionCell.appendChild(playerCard); 
     }
+
     
 
 }

@@ -1,4 +1,4 @@
-Cette application web permet aux utilisateurs de gérer dynamiquement des équipes de football, en ajoutant des joueurs, en sélectionnant une formation et en manipulant les détails des joueurs de manière structurée et interactive. Elle prend en charge des formations populaires comme 4-3-3 et 4-4-2 et propose des fonctionnalités pour ajouter, modifier et supprimer des joueurs facilement.
+Cette application web permet aux utilisateurs de gérer dynamiquement des équipes de football, en ajoutant des joueurs, en sélectionnant une formation et en manipulant les détails des joueurs de manière structurée et interactive. Elle prend en charge des formations populaires 4-4-2 et propose des fonctionnalités pour ajouter, modifier et supprimer des joueurs facilement.
 
 ** Fonctionnalités Clés
 
