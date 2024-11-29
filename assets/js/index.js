@@ -8,6 +8,10 @@ let addPlayer = document.getElementById('add-player');
 let addGoalkeeper = document.getElementById('add-goalkeeper');
 let benchPlayers = document.querySelectorAll('.bench');
 let formationCells = document.querySelectorAll('.formation-cell');
+let addBenchPlayer = document.getElementById('players-to-bench');
+let addKeeperToBench = document.getElementById('goalkeepers-bench');
+let PlayerPosition = document.getElementById('player-position')
+
 let formData = []; // formData array to store player and goalkeeper details
 
 // --------------------- [Show Goalkeeper or Player Form] ---------------------
@@ -15,12 +19,13 @@ benchPlayers.forEach(bench => {
     bench.addEventListener('click', function(event) {
         event.preventDefault();
 
-        if (bench.textContent.trim().toUpperCase() === 'GK') {
+        if (bench.textContent.trim().toUpperCase() === 'GK' ) {
             goalkeeperForm.classList.remove('hidden');
             allPlayerForm.classList.add('hidden');
         } else {
             goalkeeperForm.classList.add('hidden');
             allPlayerForm.classList.remove('hidden');
+            PlayerPosition.classList.add('hidden');
         }
         clickOnCard.classList.add('hidden');
     });
@@ -46,6 +51,21 @@ formationCells.forEach(cell => {
         clickOnCard.classList.add('hidden');
     });
 });
+
+//----------------------------[add player or goalkeeper to bench begin ]-------------------------
+addKeeperToBench.addEventListener('click', function(event){
+    event.preventDefault();
+    goalkeeperForm.classList.remove('hidden');
+    clickOnCard.classList.add('hidden');
+});
+
+addBenchPlayer.addEventListener('click', function(event){
+    event.preventDefault();
+    allPlayerForm.classList.remove('hidden');
+    PlayerPosition.classList.remove('hidden');
+    clickOnCard.classList.add('hidden');
+
+})
 
 // --------------------- [Add Player Form Submission Logic] --------------------
 addPlayer.addEventListener('click', function(event) {
@@ -116,7 +136,8 @@ addGoalkeeper.addEventListener('click', function(event) {
     let goalkeeperName = document.getElementById('Goalkeeper-name').value;
     let goalkeeperNationality = document.getElementById('Goalkeeper-nationality').value;
     let goalkeeperPhoto = document.getElementById('Goalkeeper-photo').value; 
-    let goalkeeperFlag = document.getElementById('Goalkeeper-flag').value;  
+    let goalkeeperFlag = document.getElementById('Goalkeeper-flag').value; 
+    let goalkeeperLogo = document.getElementById('Goalkeeper-logo').value; 
     let goalkeeperRating = document.getElementById('Goalkeeper-rating').value;
     let goalkeeperDiving = document.getElementById('Goalkeeper-pace').value; 
     let goalkeeperHandling = document.getElementById('Goalkeeper-shooting').value; 
@@ -172,7 +193,6 @@ addGoalkeeper.addEventListener('click', function(event) {
 // --------------------- [Create Player Card Function with New Structure] -----
 function createPlayerCard(playerformData,position) {
     const positionCell = document.getElementById(playerformData.position); // Get the position cell dynamically
-    console.log(position)
     // Check if the player card already exists in that position
     const existingCard = positionCell.querySelector('.cart');
     if (existingCard) {
@@ -265,18 +285,18 @@ function saveToLocalStorage() {
 
 
 //------------------------[Load formData from LocalStorage on Page Load]---------
-window.addEventListener('DOMContentLoaded', (event) => {
-    event.preventDefault();
-    const savedformData = localStorage.getItem('playerformData');
-    if (savedformData) {
-        formformData = JSON.parse(savedformData);
-        formformData.forEach(player => {
-            const inputPhoto = player.photo || 'https://cdn.sofifa.net/players/209/981/25_120.png';
-            const position = player.position || 'GK'; // Default to 'GK' if position is not provided
-            createPlayerCard(player, position,inputPhoto); // Create the player card
-        });
-    }
-});
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     event.preventDefault();
+//     const savedformData = localStorage.getItem('playerformData');
+//     if (savedformData) {
+//         formformData = JSON.parse(savedformData);
+//         formformData.forEach(player => {
+//             const inputPhoto = player.photo || 'https://cdn.sofifa.net/players/209/981/25_120.png';
+//             const position = player.position || 'GK'; // Default to 'GK' if position is not provided
+//             createPlayerCard(player, position,inputPhoto); // Create the player card
+//         });
+//     }
+// });
 
 
 

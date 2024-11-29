@@ -27,54 +27,6 @@
                 <div id="CB" class="formation-cell player-cb col-start-3 row-start-4 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
                 <div id="RB" class="formation-cell player-rb col-start-7 row-start-3 " style="background-image: url('../assets/Images/badge_gold.webp');"></div>
                 <div id="GK" class="formation-cell player-gk col-start-4 row-start-5 " style="background-image: url('../assets/Images/badge_gold.webp');">
-                    <!-- <div class="cart">
-                        <div class="cartPerent">
-                            <div>
-                                <div class="toutal">
-                                    
-                                     <div><h3>90</h3></div>
-                                     <div><p>GK</p></div>
-                                </div>
-                                <div class="imagedejeue">                               
-                                     <img src="https://cdn.sofifa.net/players/209/981/25_120.png" alt="">
-                                </div>
-                                <div class="nomeDejer">
-                                  
-                                     <h3> Bounou</h3>
-                                </div>
-                                <div class="pawordeJeur">  
-                                    <div>
-                                        <div>rat</div>
-                                        <div>80</div>
-                                    </div>
-                                    <div>
-                                        <div>div</div>
-                                        <div>87</div>
-                                    </div>
-                                    <div>
-                                        <div>han</div>
-                                        <div>83</div>
-                                    </div>
-                                    <div>
-                                        <div>kic</div>
-                                        <div>86</div>
-                                    </div>
-                                    <div>
-                                        <div>ref</div>
-                                        <div>33</div>
-                                    </div>
-                                    <div>
-                                        <div>pos</div>
-                                        <div>60</div>
-                                    </div>
-                                </div>
-                                <div class="footerDecart">
-                                    <div><img src="https://cdn.sofifa.net/flags/ma.png" alt=""></div>
-                                    <div><img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
     
             </div>
@@ -82,7 +34,7 @@
 
             <div  class="player-form-container  bg-green-600 rounded-lg p-4 shadow-lg">
               <!-- Main Player Type Selection Form -->
-              <h2 id="click on card" class="text-3xl font-semibold text-center text-black animate__animated animate__fadeIn">CLICK ON PLAYER'S CARD POSITION </h2>
+              <h2 id="click on card" class="text-3xl font-semibold text-center text-black  ">CLICK ON PLAYER'S CARD POSITION </h2>
               
             
               <div id="all-player-form" class="player-form hidden" >
@@ -133,6 +85,23 @@
                           <input type="url" id="player-flag" name="player-flag"  placeholder="Enter Flag Image URL">
                           <p></p>
                       </div>
+                      <!--position-->
+                      <div id="player-position" class="form-group hidden">
+                        <label for="player-position">Position:</label>
+                        <select type="text" id="player-position" name="player-position"  placeholder="Enter Position">
+                          <option >CB</option>
+                          <option >CM</option>
+                          <option >RB</option>
+                          <option >LB</option>
+                          <option >CM</option>
+                          <option >CM</option>
+                          <option >RM</option>
+                          <option >LM</option>
+                          <option >ST</option>
+                          <option >ST</option>
+                        </select>
+                        <p></p>
+                    </div>
                       <!-- Club Logo -->
                         <div class="form-group">
                             <label for="player-logo">Club Logo :</label>
@@ -295,17 +264,35 @@
 
         <!--Second Row: Bench (10 Columns) -->
          <div class="second-row">
-            <div id="GK" class="bench">GK</div>
-            <div class="bench">LB</div>
-            <div class="bench">CB</div>
-            <div class="bench">CB</div>
-            <div class="bench">RB</div>
-            <div class="bench">LM</div>
-            <div class="bench">CM</div>
-            <div class="bench">CM</div>
-            <div class="bench">RM</div>
-            <div class="bench">ST</div>
-            <div class="bench">ST</div>
+
+            <!-- <div id="GK-bench" class="bench">GK</div>
+            <div id="LB-bench" class="bench">LB</div>
+            <div id="CB-bench" class="bench">CB</div>
+            <div id="CB-bench" class="bench">CB</div>
+            <div id="RM-bench" class="bench">RB</div>
+            <div id="LM-bench" class="bench">LM</div>
+            <div id="CM-bench" class="bench">CM</div>
+            <div id="CM-bench" class="bench">CM</div>
+            <div id="RM-bench" class="bench">RM</div>
+            <div id="ST-bench" class="bench">ST</div>
+            <div id="ST-bench" class="bench">ST</div> -->
+            <div id="add-player-to-bench">
+                <div class="add-players-bench">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="players-to-bench" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14m7-7H5"></path>
+                    </svg>
+                    <span>Add Player </span>
+                </div>
+                <div class="add-goalkeepers-bench">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="goalkeepers-bench" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14m7-7H5"></path>
+                    </svg>
+                    <span>Add keeper</span>
+                </div>
+            </div>
+            <div id="bench-container" class="bench-container">
+               
+            </div>
         </div>
     </div>
 
