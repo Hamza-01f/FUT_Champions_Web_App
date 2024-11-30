@@ -358,14 +358,33 @@ function openGoalkeeperEditModal(goalkeeperformData,positionCell,playerCard) {
     // Populate modal with current data
     document.getElementById('edit-goalkeeper-name').value = goalkeeperformData.name || '';
     document.getElementById('edit-goalkeeper-photo').value = goalkeeperformData.photo || '';
-    document.getElementById('edit-goalkeeper-nationality').value = goalkeeperformData.Nationality || '';
+    document.getElementById('edit-Goalkeeper-nationality').value = goalkeeperformData.Nationality || '';
+    document.getElementById('edit-Goalkeeper-flag').value = goalkeeperformData.flag || '';
+    document.getElementById('edit-Goalkeeper-logo').value = goalkeeperformData.logo || '';
+    document.getElementById('edit-Goalkeeper-rating').value = goalkeeperformData.rating || '';
+    document.getElementById('edit-Goalkeeper-diving').value = goalkeeperformData.diving || '';
+    document.getElementById('edit-Goalkeeper-handling').value = goalkeeperformData.handling || '';
+    document.getElementById('edit-Goalkeeper-kicking').value = goalkeeperformData.kicking || '';
+    document.getElementById('edit-Goalkeeper-reflexes').value = goalkeeperformData.reflexes || '';
+    document.getElementById('edit-Goalkeeper-speed').value = goalkeeperformData.speed || '';
+    document.getElementById('edit-Goalkeeper-positionning').value = goalkeeperformData.positioning || '';
 
     // Handle save action
     document.getElementById('save-edit-goalkeeper').addEventListener('click', function (event) {
         event.preventDefault();
         goalkeeperformData.name = document.getElementById('edit-goalkeeper-name').value;
         goalkeeperformData.photo = document.getElementById('edit-goalkeeper-photo').value;
-        goalkeeperformData.Nationality = document.getElementById('edit-goalkeeper-nationality').value;
+        goalkeeperformData.Nationality = document.getElementById('edit-Goalkeeper-nationality').value;
+        goalkeeperformData.flag = document.getElementById('edit-Goalkeeper-flag').value;
+        goalkeeperformData.logo = document.getElementById('edit-Goalkeeper-logo').value ;
+        goalkeeperformData.rating = document.getElementById('edit-Goalkeeper-rating').value;
+        goalkeeperformData.diving = document.getElementById('edit-Goalkeeper-diving').value;
+        goalkeeperformData.handling = document.getElementById('edit-Goalkeeper-handling').value;
+        goalkeeperformData.kicking = document.getElementById('edit-Goalkeeper-kicking').value;
+        goalkeeperformData.reflexes = document.getElementById('edit-Goalkeeper-speed').value;
+        goalkeeperformData.speed = document.getElementById('edit-Goalkeeper-speed').value;
+        goalkeeperformData.positioning = document.getElementById('edit-Goalkeeper-positionning').value;
+
 
         // Close modal after save
         document.getElementById('edit-goalkeeper-modal').classList.add('hidden');
