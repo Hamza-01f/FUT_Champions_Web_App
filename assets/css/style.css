@@ -37,7 +37,7 @@ body, html {
 
 
 .formation-cell:hover {
-    transform: scale(1.9); /
+    transform: scale(1.8); /
 }
 
 /*-------------------------------------*/
@@ -51,34 +51,84 @@ body, html {
 }
 
 .card-buttons {
-    display: none; /* Hide the buttons by default */
+    display: none;
     position: absolute;
-    right: 76px;
+    right: 60px;  
+    bottom: 10px;
     display: flex;
     flex-direction: column;
+    gap: 12px;   
+    align-items: center; 
 }
 
-.formation-cell:hover .player-card .card-buttons {
-    display: flex; /* Show buttons on hover */
+.player-card:hover .card-buttons {
+    display: flex; 
 }
 
-.update-btn,
-.delete-btn {
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+.delete-btn, .update-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
+    font-family: sans-serif;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-left: 6rem;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
 }
 
-.update-btn:hover,
-.delete-btn:hover {
-    background-color: rgba(0, 0, 0, 0.9);
+.delete-btn:hover, .update-btn:hover {
+    transform: scale(1.1); 
 }
+
+.delete-btn{
+    position: relative;
+    bottom: 10px;
+}
+
+.update-btn{
+    position: relative;
+    top: 30px;
+}
+
+.delete-btn svg, .update-btn svg {
+    width: 20px;  
+    height: 20px; 
+}
+
+
+.delete-btn:hover svg, .update-btn:hover svg {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+}
+
+.delete-btn svg {
+    fill: #e71717; 
+}
+
+.update-btn svg {
+    fill: #fdf9f9; 
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 600px) {
+    .card-buttons {
+        right: 5px;
+        bottom: 5px;
+        gap: 8px;
+    }
+
+    .delete-btn, .update-btn {
+        padding: 6px 10px;
+    }
+
+    .delete-btn svg, .update-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
 
 /*-------------------------------------------------*/
 form .form-group p {
@@ -208,7 +258,7 @@ button:hover {
     display: grid;
     border-radius: 6px;
     border: white 2px solid;
-    grid-template-columns: 12% 1fr;
+    grid-template-columns: repeat(11,1fr);
     gap: 5px;
     padding: 15px;
 }
@@ -220,12 +270,12 @@ button:hover {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
+    transition: 0.3s ease-in-out;
 }
 
 .bench:hover {
-   background-color: #96d999;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #add-player-to-bench svg {
