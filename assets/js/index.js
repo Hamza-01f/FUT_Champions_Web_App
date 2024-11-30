@@ -193,20 +193,21 @@ addGoalkeeper.addEventListener('click', function(event) {
     saveToLocalStorage(); // Save to localStorage (if necessary)
 });
 
-// --------------------- [Create Player Card Function with New Structure] -----
-function createPlayerCard(playerformData,position) {
-    const positionCell = document.getElementById(playerformData.position); // Get the position cell dynamically
-    // Check if the player card already exists in that position
-//   const existingCard = positionCell.querySelector('.cart');
-//     if (existingCard) {
-//         positionCell.removeChild(existingCard); // Remove existing card if present
-//     }  
-    
-    if(position){
-        if(position === 'GK'){
-            const GoalKeeperInner = `
-            <div class="cartPerent">
-                <div>
+
+function createPlayerCard(playerformData, position) {
+    const positionCell = document.getElementById(position); // Get the position cell dynamically
+
+    if (playerformData) {
+        const playerCard = document.createElement('div');
+        playerCard.classList.add('cart');
+        
+        // Add a class to track if it's full of information
+        playerCard.classList.add('player-card');
+        
+        if(position != 'GK'){
+            // Create the inner HTML for the player card
+            const playerInner = `
+                <div class="CardContainer">
                     <div class="toutal">
                         <div><h3>${playerformData.rating || 'N/A'}</h3></div>
                         <div><p>${playerformData.position || 'Position'}</p></div>
@@ -214,78 +215,172 @@ function createPlayerCard(playerformData,position) {
                     <div class="imagedejeue">
                         <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
                     </div>
-                    <div class="nomeDejer flex pl-1">
-                        <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
+                    <div class="nomeDejer flex ml-1">
+                        <h3>${playerformData.Nationality || 'Player Name'}</h3>
                         <h3>${playerformData.name || 'Player Name'}</h3>
                     </div>
                     <div class="pawordeJeur">
                         <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                        <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
-                        <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
+                        <div><div>pac</div><div>${playerformData.pace || '0'}</div></div>
+                        <div><div>sho</div><div>${playerformData.shooting || '0'}</div></div>
                         <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                        <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
-                        <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
-                        <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
+                        <div><div>pas</div><div>${playerformData.passing || '0'}</div></div>
+                        <div><div>dri</div><div>${playerformData.dribbling || '0'}</div></div>
+                        <div><div>def</div><div>${playerformData.defending || '0'}</div></div>
+                        <div><div>phy</div><div>${playerformData.physical || '0'}</div></div>
                     </div>
                     <div class="footerDecart">
                         <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
                         <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
                     </div>
                 </div>
-            </div>
-        `;
-    
-        const playerCard = document.createElement('div');
-        playerCard.classList.add('cart');
-        playerCard.innerHTML = GoalKeeperInner;
-    
-        positionCell.appendChild(playerCard); 
-        }else {
-            const playerInner = `
-            <div class="cartPerent">
-            <div>
-                <div class="toutal">
-                     <div><h3>${playerformData.rating || 'N/A'}</h3></div>
-                     <div><p>${playerformData.position || 'Position'}</p></div>
+            `;
+
+            playerCard.innerHTML = playerInner;
+        }else{
+                const GoalKeeperInner = `
+                <div class="CardContainer">
+                    <div>
+                        <div class="toutal">
+                            <div><h3>${playerformData.rating || 'N/A'}</h3></div>
+                            <div><p>${playerformData.position || 'Position'}</p></div>
+                        </div>
+                        <div class="imagedejeue">
+                            <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
+                        </div>
+                        <div class="nomeDejer flex pl-1">
+                            <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
+                            <h3>${playerformData.name || 'Player Name'}</h3>
+                        </div>
+                        <div class="pawordeJeur">
+                            <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
+                            <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
+                            <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
+                            <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
+                            <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
+                            <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
+                            <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
+                        </div>
+                        <div class="footerDecart">
+                            <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                            <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="imagedejeue">
-                    <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
-                </div>
-                <div class="nomeDejer flex ml-1">
-                    <h3>${playerformData.Nationality || 'Player Name'}</h3>
-                    <h3>${playerformData.name || 'Player Name'}</h3>
-                </div>
-                <div class="pawordeJeur">
-                    <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                    <div><div>pac</div><div>${playerformData.pace || '0'}</div></div>
-                    <div><div>sho</div><div>${playerformData.shooting || '0'}</div></div>
-                    <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                    <div><div>pas</div><div>${playerformData.passing || '0'}</div></div>
-                    <div><div>dri</div><div>${playerformData.dribbling || '0'}</div></div>
-                    <div><div>def</div><div>${playerformData.defending || '0'}</div></div>
-                      <div><div>phy</div><div>${playerformData.physical || '0'}</div></div>
-                </div>
-                <div class="footerDecart">
-                    <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
-                    <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
-                </div>
-            </div>
-        </div>
-        `;
-        const playerCard = document.createElement('div');
-        playerCard.classList.add('cart');
-        playerCard.innerHTML = playerInner;
-    
-        positionCell.appendChild(playerCard); 
+            `;
+
+            playerCard.innerHTML = GoalKeeperInner;
         }
-    }else{
-      alert('no player to add')
 
+
+        // Add buttons for update and delete
+        const buttons = document.createElement('div');
+        buttons.classList.add('card-buttons');
+        buttons.innerHTML = `
+            <button class="update-btn">Update</button>
+            <button class="delete-btn">Delete</button>
+        `;
+        playerCard.appendChild(buttons);
+
+        // Append the card to the position cell
+        positionCell.appendChild(playerCard);
+
+        // Add event listeners for buttons
+        buttons.querySelector('.update-btn').addEventListener('click', function () {
+            if(position != 'GK'){
+                openPlayerEditModal(playerformData,positionCell,playerCard);
+            }else{
+                openGoalkeeperEditModal(playerformData,positionCell,playerCard)
+            }
+           
+        });
+
+        buttons.querySelector('.delete-btn').addEventListener('click', function () {
+            // Delete player info
+            positionCell.removeChild(playerCard);
+        });
     }
-
-    
-
 }
+
+//----------------------------[add player edit model goes here]------------------------
+function openPlayerEditModal(playerformData,positionCell,playerCard) {
+    // Show player edit modal
+    document.getElementById('edit-player-modal').classList.remove('hidden');
+
+    // Populate modal with current data
+    document.getElementById('edit-player-name').value = playerformData.name || '';
+    document.getElementById('edit-player-photo').value = playerformData.photo || '';
+    document.getElementById('edit-player-nationality').value = playerformData.Nationality || '';
+    document.getElementById('edit-player-flag').value = playerformData.flag || '';
+    document.getElementById('edit-player-logo').value = playerformData.logo || '';
+    document.getElementById('edit-player-rating').value = playerformData.rating || '';
+    document.getElementById('edit-player-pace').value = playerformData.pace || '';
+    document.getElementById('edit-player-shooting').value = playerformData.shooting || '';
+    document.getElementById('edit-player-passing').value = playerformData.passing || '';
+    document.getElementById('edit-player-dribbling').value = playerformData.dribbling || '';
+    document.getElementById('edit-player-defending').value = playerformData.defending || '';
+    document.getElementById('edit-player-physical').value = playerformData.physical || '';
+
+    // Handle save action
+    document.getElementById('save-edit-player').addEventListener('click', function (event) {
+        event.preventDefault();
+        playerformData.name = document.getElementById('edit-player-name').value;
+        playerformData.photo = document.getElementById('edit-player-photo').value;
+        playerformData.Nationality = document.getElementById('edit-player-nationality').value;
+        playerformData.flag = document.getElementById('edit-player-flag').value;
+        playerformData.logo = document.getElementById('edit-player-logo').value;
+        playerformData.rating = document.getElementById('edit-player-rating').value;
+        playerformData.pace = document.getElementById('edit-player-pace').value;
+        playerformData.shooting = document.getElementById('edit-player-shooting').value;
+        playerformData.passing = document.getElementById('edit-player-passing').value;
+        playerformData.dribbling = document.getElementById('edit-player-dribbling').value;
+        playerformData.defending = document.getElementById('edit-player-defending').value;
+        playerformData.physical = document.getElementById('edit-player-physical').value;
+        
+        document.getElementById('edit-player-modal').classList.add('hidden');
+
+        // Recreate the player card with updated info
+        positionCell.removeChild(playerCard);
+        createPlayerCard(playerformData, playerformData.position);
+    });
+
+    // Handle cancel action
+    document.getElementById('cancel-edit-player').addEventListener('click', function () {
+        document.getElementById('edit-player-modal').classList.add('hidden');
+    });
+}
+
+//goal keeper edit functionality starts here
+function openGoalkeeperEditModal(goalkeeperformData,positionCell,playerCard) {
+    // Show goalkeeper edit modal
+    document.getElementById('edit-goalkeeper-modal').classList.remove('hidden');
+
+    // Populate modal with current data
+    document.getElementById('edit-goalkeeper-name').value = goalkeeperformData.name || '';
+    document.getElementById('edit-goalkeeper-photo').value = goalkeeperformData.photo || '';
+    document.getElementById('edit-goalkeeper-nationality').value = goalkeeperformData.Nationality || '';
+
+    // Handle save action
+    document.getElementById('save-edit-goalkeeper').addEventListener('click', function (event) {
+        event.preventDefault();
+        goalkeeperformData.name = document.getElementById('edit-goalkeeper-name').value;
+        goalkeeperformData.photo = document.getElementById('edit-goalkeeper-photo').value;
+        goalkeeperformData.Nationality = document.getElementById('edit-goalkeeper-nationality').value;
+
+        // Close modal after save
+        document.getElementById('edit-goalkeeper-modal').classList.add('hidden');
+
+        // Recreate the goalkeeper card with updated info
+        positionCell.removeChild(playerCard);
+        createPlayerCard(goalkeeperformData, 'GK');
+    });
+
+    // Handle cancel action
+    document.getElementById('cancel-edit-goalkeeper').addEventListener('click', function () {
+        document.getElementById('edit-goalkeeper-modal').classList.add('hidden');
+    });
+}
+
 
 // --------------------- [Save to LocalStorage Function] -----------------------
 function saveToLocalStorage() {
