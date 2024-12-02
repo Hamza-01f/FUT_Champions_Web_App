@@ -18,6 +18,9 @@ benchPlayers.forEach(bench => {
     bench.addEventListener('click', function(event) {
         event.preventDefault();
 
+        const position = bench.id;
+        sessionStorage.setItem('clickedPosition', position); 
+
         if (bench.textContent.trim().toUpperCase() === 'GK' ) {
             goalkeeperForm.classList.remove('hidden');
             allPlayerForm.classList.add('hidden');
@@ -168,88 +171,273 @@ addGoalkeeper.addEventListener('click', function(event) {
     document.getElementById('Goalkeeper-physical').value = '';
 
     // Create and append the goalkeeper card
-    console.log(formData)
     createPlayerCard(goalkeeperInfo,position);
 
     saveToLocalStorage(); // Save to localStorage (if necessary)
 });
 
+function createCard(Data , benchLB , hidePosition){
+    hidePosition.classList.add('hidden');
+    if(benchLB === 'GK'){
+        return `
+            <div class="benchCardContainer">
+                <div class="toutal">
+                    <div><h3>${Data.rating || 'N/A'}</h3></div>
+                    <div><p>${benchLB}</p></div>
+                </div>
+                <div class="playerImage">
+                    <img src="${Data.photo }" alt="${Data.name || 'Player Name'}">
+                </div>
+                <div class="nomeDejer flex ml-1">
+                    <h3>${Data.Nationality || 'Player Name'}</h3>
+                    <h3>${Data.name || 'Player Name'}</h3>
+                </div>
+                <div class="playerStatistics">
+                    <div>
+                    <div>div</div>
+                    <div>${Data.diving || '0'}</div>
+                    </div>
+                    <div>
+                    <div>han</div>
+                    <div>${Data.handling || '0'}</div>
+                    </div>
+                    <div>
+                    <div>kic</div>
+                    <div>${Data.kicking || '0'}</div>
+                    </div>
+                    <div>
+                    <div>ref</div>
+                    <div>${Data.reflexes || '0'}</div>
+                    </div>
+                    <div>
+                    <div>spe</div>
+                    <div>${Data.speed || '0'}</div>
+                    </div>
+                    <div>
+                    <div>pos</div>
+                    <div>${Data.positioning || '0'}</div>
+                    </div>
+                </div>
+                <div class="cardFooter">
+                    <div><img src="${Data.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                    <div><img src="${Data.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                </div>
+            </div>
+        `;
+    }else{
+        return `
+                <div class="benchCardContainer">
+                <div class="toutal">
+                    <div><h3>${Data.rating || 'N/A'}</h3></div>
+                    <div><p>${benchLB}</p></div>
+                </div>
+                <div class="playerImage">
+                    <img src="${Data.photo }" alt="${Data.name || 'Player Name'}">
+                </div>
+                <div class="nomeDejer flex ml-1">
+                    <h3>${Data.Nationality || 'Player Name'}</h3>
+                    <h3>${Data.name || 'Player Name'}</h3>
+                </div>
+                <div class="playerStatistics">
+                    <div>
+                    <div>pac</div>
+                    <div>${Data.pace || '0'}</div>
+                    </div>
+                    <div>
+                    <div>sho</div>
+                    <div>${Data.shooting || '0'}</div>
+                    </div>
+                    <div>
+                    <div>pas</div>
+                    <div>${Data.passing || '0'}</div>
+                    </div>
+                    <div>
+                    <div>dri</div>
+                    <div>${Data.dribbling || '0'}</div>
+                    </div>
+                    <div>
+                    <div>def</div>
+                    <div>${Data.defending || '0'}</div>
+                    </div>
+                    <div>
+                    <div>phy</div>
+                    <div>${Data.physical || '0'}</div>
+                    </div>
+                </div>
+                <div class="cardFooter">
+                    <div><img src="${Data.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                    <div><img src="${Data.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                </div>
+            </div>
+            `;
+    }
+}
+
 
 function createPlayerCard(playerformData, position) {
     const positionCell = document.getElementById(position); // Get the position cell dynamically
-    alert(position)
 
     if (playerformData) {
         const playerCard = document.createElement('div');
-        playerCard.classList.add('cart');
         
-        // Add a class to track if it's full of information
-        playerCard.classList.add('player-card');
+        playerCard.classList.add('cart', 'player-card');
+        let playerInner = '';
+        let GoalKeeperInner = '';
         
-        if(position != 'GK'){
-            // Create the inner HTML for the player card
-            const playerInner = `
-                <div class="CardContainer">
-                    <div class="toutal">
-                        <div><h3>${playerformData.rating || 'N/A'}</h3></div>
-                        <div><p>${playerformData.position || 'Position'}</p></div>
-                    </div>
-                    <div class="imagedejeue">
-                        <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
-                    </div>
-                    <div class="nomeDejer flex ml-1">
-                        <h3>${playerformData.Nationality || 'Player Name'}</h3>
-                        <h3>${playerformData.name || 'Player Name'}</h3>
-                    </div>
-                    <div class="pawordeJeur">
-                        <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                        <div><div>pac</div><div>${playerformData.pace || '0'}</div></div>
-                        <div><div>sho</div><div>${playerformData.shooting || '0'}</div></div>
-                        <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                        <div><div>pas</div><div>${playerformData.passing || '0'}</div></div>
-                        <div><div>dri</div><div>${playerformData.dribbling || '0'}</div></div>
-                        <div><div>def</div><div>${playerformData.defending || '0'}</div></div>
-                        <div><div>phy</div><div>${playerformData.physical || '0'}</div></div>
-                    </div>
-                    <div class="footerDecart">
-                        <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
-                        <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
-                    </div>
-                </div>
-            `;
+        if(position != 'GK' && position != 'bench-GK'){
+            if(position === 'bench-LB' || position === 'bench-LCB' || position === 'bench-RCB' || position === 'bench-RB' || position === 'bench-LM' || position === 'bench-LCM' || position === 'bench-RCM' || position === 'bench-RM' || position === 'bench-RST' || position === 'bench-LST'){
+                switch(position){
+                    case 'bench-LB' : 
+                                  var benchLB = 'LB';
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchLB,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-LCB' :
+                                  let benchLcb = 'LCB';
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchLcb,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-RCB' : 
+                                  let benchRCB = 'RCB'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchRCB,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-RB'  : 
+                                  let benchRB = 'RB'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchRB,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-LM'  : 
+                                  let benchLM = 'LM'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData, benchLM ,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-LCM' : 
+                                  let benchLCM = 'LCM'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchLCM,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-RCM' : 
+                                  let benchRCM = 'RCM'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchRCM,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-RM': 
+                                  let benchRM = 'RM'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchRM,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-RST' : 
+                                  let benchRST = 'RST'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchRST,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                    case 'bench-LST' : 
+                                  let benchLST = 'LST'
+                                  var hidePosition = positionCell.querySelector('p');
+                                  playerInner = createCard(playerformData,benchLST ,hidePosition);
+                                  positionCell.style.backgroundImage = 'none';
+                                  break;
+                }
+            }else{
 
-            playerCard.innerHTML = playerInner;
+                playerInner = `
+                        <div class="CardContainer">
+                            <div class="toutal">
+                                <div><h3>${playerformData.rating || 'N/A'}</h3></div>
+                                <div><p>${playerformData.position || 'Position'}</p></div>
+                            </div>
+                            <div class="imagedejeue">
+                                <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
+                            </div>
+                            <div class="nomeDejer flex ml-2">
+                                <h3>${playerformData.Nationality || 'Player Name'}</h3>
+                                <h3>${playerformData.name || 'Player Name'}</h3>
+                            </div>
+                            <div class="pawordeJeur">
+                                <div>
+                                <div>pac</div>
+                                <div>${playerformData.pace || '0'}</div>
+                                </div>
+                                <div>
+                                <div>sho</div>
+                                <div>${playerformData.shooting || '0'}</div>
+                                </div>
+                                <div>
+                                <div>pas</div>
+                                <div>${playerformData.passing || '0'}</div>
+                                </div>
+                                <div>
+                                <div>dri</div>
+                                <div>${playerformData.dribbling || '0'}</div>
+                                </div>
+                                <div>
+                                <div>def</div>
+                                <div>${playerformData.defending || '0'}</div>
+                                </div>
+                                <div>
+                                <div>phy</div>
+                                <div>${playerformData.physical || '0'}</div>
+                                </div>
+                            </div>
+                            <div class="footerDecart">
+                                <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                                <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                            </div>
+                        </div>
+                `;
+            }
+
+          playerCard.innerHTML = playerInner;
         }else{
-                const GoalKeeperInner = `
-                <div class="CardContainer">
-                    <div>
-                        <div class="toutal">
-                            <div><h3>${playerformData.rating || 'N/A'}</h3></div>
-                            <div><p>${playerformData.position || 'Position'}</p></div>
-                        </div>
-                        <div class="imagedejeue">
-                            <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
-                        </div>
-                        <div class="nomeDejer flex pl-1">
-                            <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
-                            <h3>${playerformData.name || 'Player Name'}</h3>
-                        </div>
-                        <div class="pawordeJeur">
-                            <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
-                            <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
-                            <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
-                            <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
-                            <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
-                            <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
-                            <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
-                        </div>
-                        <div class="footerDecart">
-                            <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
-                            <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+             if(position === 'bench-GK'){
+                let benchGK = 'GK'
+                var hidePosition = positionCell.querySelector('p');
+                GoalKeeperInner = createCard(playerformData,benchGK,hidePosition);
+                positionCell.style.backgroundImage = 'none';
+             }else{
+                    GoalKeeperInner = `
+
+                    <div class="CardContainer">
+                        <div>
+                            <div class="toutal">
+                                <div><h3>${playerformData.rating || 'N/A'}</h3></div>
+                                <div><p>${playerformData.position || 'Position'}</p></div>
+                            </div>
+                            <div class="imagedejeue">
+                                <img src="${playerformData.photo || 'default_image_url'}" alt="${playerformData.name || 'Player Name'}">
+                            </div>
+                            <div class="nomeDejer flex pl-1">
+                                <div><h3>${playerformData.Nationality || 'N/A'}</h3></div>
+                                <h3>${playerformData.name || 'Player Name'}</h3>
+                            </div>
+                            <div class="pawordeJeur">
+                                <div><div>rat</div><div>${playerformData.rating || '0'}</div></div>
+                                <div><div>div</div><div>${playerformData.diving || '0'}</div></div>
+                                <div><div>han</div><div>${playerformData.handling || '0'}</div></div>
+                                <div><div>kic</div><div>${playerformData.kicking || '0'}</div></div>
+                                <div><div>ref</div><div>${playerformData.reflexes || '0'}</div></div>
+                                <div><div>spe</div><div>${playerformData.speed || '0'}</div></div>
+                                <div><div>pos</div><div>${playerformData.positioning || '0'}</div></div>
+                            </div>
+                            <div class="footerDecart">
+                                <div><img src="${playerformData.flag || 'https://cdn.sofifa.net/flags/ma.png'}" alt="Flag"></div>
+                                <div><img src="${playerformData.logo || 'https://cdn.sofifa.net/meta/team/7011/120.png'}" alt="Team Logo"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+
+            }
 
             playerCard.innerHTML = GoalKeeperInner;
         }
@@ -258,25 +446,42 @@ function createPlayerCard(playerformData, position) {
         // Add buttons for update and delete
         const buttons = document.createElement('div');
         buttons.classList.add('card-buttons');
-        buttons.innerHTML = `
-                        <button class="update-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/>
-                            </svg>
-                        </button>
-                        <button class="delete-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/>
-                            </svg>
-                        </button>
-        `;
-        playerCard.appendChild(buttons);
+        if(position === 'bench-GK' || position === 'bench-LB' || position === 'bench-LCB' || position === 'bench-RCB' || position === 'bench-RB' || position === 'bench-LM' || position === 'bench-LCM' || position === 'bench-RCM' || position === 'bench-RM' || position === 'bench-RST' || position === 'bench-LST'){
+            buttons.innerHTML = `
+            <button class="update-btn-bench">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/>
+                </svg>
+            </button>
+            <button class="delete-btn-bench">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                </svg>
+            </button>
+         `;
+          playerCard.appendChild(buttons);
+        }else{
+            buttons.innerHTML = `
+            <button class="update-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/>
+                </svg>
+            </button>
+            <button class="delete-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                </svg>
+            </button>
+         `;
+          playerCard.appendChild(buttons);
+        }
+
 
         // Append the card to the position cell
         positionCell.appendChild(playerCard);
 
         // Add event listeners for buttons
-        buttons.querySelector('.update-btn').addEventListener('click', function () {
+        buttons.querySelector('.update-btn, .update-btn-bench').addEventListener('click', function () {
             if(position != 'GK'){
                 openPlayerEditModal(playerformData,positionCell,playerCard);
             }else{
@@ -285,7 +490,7 @@ function createPlayerCard(playerformData, position) {
            
         });
 
-        buttons.querySelector('.delete-btn').addEventListener('click', function () {
+        buttons.querySelector('.delete-btn, .delete-btn-bench').addEventListener('click', function () {
             // Delete player info
             positionCell.removeChild(playerCard);
         });
@@ -404,7 +609,7 @@ function saveToLocalStorage() {
 //     if (savedformData) {
 //         formformData = JSON.parse(savedformData);
 //         formformData.forEach(player => {
-//             const inputPhoto = player.photo || 'https://cdn.sofifa.net/players/209/981/25_120.png';
+//             const inputPhoto = player.photo ;
 //             const position = player.position || 'GK'; // Default to 'GK' if position is not provided
 //             createPlayerCard(player, position,inputPhoto); // Create the player card
 //         });
