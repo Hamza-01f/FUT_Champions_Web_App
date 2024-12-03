@@ -53,6 +53,114 @@ formationCells.forEach(cell => {
     });
 });
 
+const NameAndCountryRegix = /^[a-zA-Z\s]{4,50}$/; 
+const CdnRegixes = /^https:\/\/cdn\.sofifa\.net\/.*\.(png|jpg|jpeg|gif)$/; 
+const statisticsRegix = /^\d{2}$/; 
+
+let IsValid = false;
+
+//form validation for player cards 
+function validateForm(form){
+    IsValid = false; 
+    inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+        let MessageError = input.nextElementSibling; 
+
+        // Check for required fields
+        if (input.value === '') {
+            MessageError.textContent = 'Please! This input is required ';
+            IsValid = true;
+        }
+        // Validate player name
+        else if (input.name === 'player-name' && !NameAndCountryRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid name, please enter a valid one';
+            IsValid = true;
+        }
+        // Validate player photo URL
+        else if (input.name === 'player-photo' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Image URL, please enter a valid one';
+            IsValid = true;
+        }
+        // Validate player nationality
+        else if (input.name === 'player-nationality' && !NameAndCountryRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid Nationality name';
+            IsValid = true;
+        }
+        // Validate flag URL
+        else if (input.name === 'player-flag' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Flag URL';
+            IsValid = true;
+        }
+        // Validate logo URL
+        else if (input.name === 'player-logo' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Logo URL';
+            IsValid = true;
+        }
+        // Validate rating and stats (should be between 1 and 99)
+        else if (input.name === 'player-rating' && !statisticsRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid rating, it should be between 1 and 99';
+            IsValid = true;
+        } else if (['player-pace', 'player-shooting', 'player-passing', 'player-dribbling', 'player-defending', 'player-physical'].includes(input.name) && !statisticsRegix.test(input.value)) {
+            MessageError.textContent = `Invalid ${input.name.split('-')[1]}, it should be between 1 and 99`;
+            IsValid = true;
+        } else {
+            MessageError.textContent = ''; // Clear error message if input is valid
+        }
+    });
+}
+
+//form validation for goalkeeper information
+
+function validateKeeper(GoalkeeperForms){
+
+    IsValid = false; 
+    inputs = GoalkeeperForms.querySelectorAll('input');
+    inputs.forEach(input => {
+        let MessageError = input.nextElementSibling; 
+
+        // Check for required fields
+        if (input.value === '') {
+            MessageError.textContent = 'Please! This input is required';
+            IsValid = true;
+        }
+        // Validate player name
+        else if (input.name === 'Goalkeeper-name' && !NameAndCountryRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid name, please enter a valid one';
+            IsValid = true;
+        }
+        // Validate player photo URL
+        else if (input.name === 'Goalkeeper-photo' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Image URL, please enter a valid one';
+            IsValid = true;
+        }
+        // Validate player nationality
+        else if (input.name === 'Goalkeeper-nationality' && !NameAndCountryRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid Nationality name';
+            IsValid = true;
+        }
+        // Validate flag URL
+        else if (input.name === 'Goalkeeper-flag' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Flag URL';
+            IsValid = true;
+        }
+        // Validate logo URL
+        else if (input.name === 'Goalkeeper-logo' && !CdnRegixes.test(input.value)) {
+            MessageError.textContent = 'Invalid Logo URL';
+            IsValid = true;
+        }
+        // Validate rating and stats (should be between 1 and 99)
+        else if (input.name === 'Goalkeeper-rating' && !statisticsRegix.test(input.value)) {
+            MessageError.textContent = 'Invalid rating, it should be between 1 and 99';
+            IsValid = true;
+        } else if (['Goalkeeper-diving', 'Goalkeeper-handling', 'Goalkeeper-kicking', 'Goalkeeper-reflexes', 'Goalkeeper-speed', 'Goalkeeper-positionning'].includes(input.name) && !statisticsRegix.test(input.value)) {
+            MessageError.textContent = `Invalid ${input.name.split('-')[1]}, it should be between 1 and 99`;
+            IsValid = true;
+        } else {
+            MessageError.textContent = ''; // Clear error message if input is valid
+        }
+    });
+}
+
 
 // --------------------- [Add Player Form Submission Logic] --------------------
 addPlayer.addEventListener('click', function(event) {
@@ -71,6 +179,13 @@ addPlayer.addEventListener('click', function(event) {
     let playerDribbling = document.getElementById('player-dribbling').value;
     let playerPhysical = document.getElementById('player-physical').value;
     let playerDefending = document.getElementById('player-defending').value;
+
+    let PlayerFormValid = document.getElementById('players-form')
+    validateForm(PlayerFormValid)
+
+    if(IsValid){
+        return;
+    }
 
     // Get the position where the player card should be added from sessionStorage
     const position = sessionStorage.getItem('clickedPosition');
@@ -116,6 +231,7 @@ addPlayer.addEventListener('click', function(event) {
 });
 
 // --------------------- [Add Goalkeeper Form Submission Logic] --------------
+
 addGoalkeeper.addEventListener('click', function(event) {
     event.preventDefault();
 
@@ -133,6 +249,12 @@ addGoalkeeper.addEventListener('click', function(event) {
     let goalkeeperSpeed = document.getElementById('Goalkeeper-defending').value; 
     let goalkeeperPositioning = document.getElementById('Goalkeeper-physical').value; 
 
+    let GoalkeeperForms = document.getElementById('Goalkeepers-form')
+    validateKeeper(GoalkeeperForms)
+
+    if(IsValid){
+        return;
+    }
     
     const position = sessionStorage.getItem('clickedPosition');
     
@@ -273,6 +395,7 @@ function createCard(Data , benchLB , hidePosition){
     }
 }
 
+//------------------------------------[function to create both player and goalkeeper card starts here]-----------------------------
 
 function createPlayerCard(playerformData, position) {
     const positionCell = document.getElementById(position); // Get the position cell dynamically
@@ -482,10 +605,10 @@ function createPlayerCard(playerformData, position) {
 
         // Add event listeners for buttons
         buttons.querySelector('.update-btn, .update-btn-bench').addEventListener('click', function () {
-            if(position != 'GK'){
-                openPlayerEditModal(playerformData,positionCell,playerCard);
-            }else{
+            if(position === 'GK' || position === 'bench-GK'){
                 openGoalkeeperEditModal(playerformData,positionCell,playerCard)
+            }else{
+                openPlayerEditModal(playerformData,positionCell,playerCard);
             }
            
         });
@@ -500,21 +623,22 @@ function createPlayerCard(playerformData, position) {
 //----------------------------[add player edit model goes here]------------------------
 function openPlayerEditModal(playerformData,positionCell,playerCard) {
     // Show player edit modal
-    document.getElementById('edit-player-modal').classList.remove('hidden');
+    let playerEditModal = document.getElementById('edit-player-modal');
+    playerEditModal.classList.remove('hidden');
 
     // Populate modal with current data
-    document.getElementById('edit-player-name').value = playerformData.name || '';
-    document.getElementById('edit-player-photo').value = playerformData.photo || '';
-    document.getElementById('edit-player-nationality').value = playerformData.Nationality || '';
-    document.getElementById('edit-player-flag').value = playerformData.flag || '';
-    document.getElementById('edit-player-logo').value = playerformData.logo || '';
-    document.getElementById('edit-player-rating').value = playerformData.rating || '';
-    document.getElementById('edit-player-pace').value = playerformData.pace || '';
-    document.getElementById('edit-player-shooting').value = playerformData.shooting || '';
-    document.getElementById('edit-player-passing').value = playerformData.passing || '';
-    document.getElementById('edit-player-dribbling').value = playerformData.dribbling || '';
-    document.getElementById('edit-player-defending').value = playerformData.defending || '';
-    document.getElementById('edit-player-physical').value = playerformData.physical || '';
+    document.getElementById('edit-player-name').value = playerformData.name ;
+    document.getElementById('edit-player-photo').value = playerformData.photo ;
+    document.getElementById('edit-player-nationality').value = playerformData.Nationality ;
+    document.getElementById('edit-player-flag').value = playerformData.flag ;
+    document.getElementById('edit-player-logo').value = playerformData.logo ;
+    document.getElementById('edit-player-rating').value = playerformData.rating ;
+    document.getElementById('edit-player-pace').value = playerformData.pace ;
+    document.getElementById('edit-player-shooting').value = playerformData.shooting ;
+    document.getElementById('edit-player-passing').value = playerformData.passing ;
+    document.getElementById('edit-player-dribbling').value = playerformData.dribbling ;
+    document.getElementById('edit-player-defending').value = playerformData.defending ;
+    document.getElementById('edit-player-physical').value = playerformData.physical ;
 
     // Handle save action
     document.getElementById('save-edit-player').addEventListener('click', function (event) {
@@ -551,18 +675,18 @@ function openGoalkeeperEditModal(goalkeeperformData,positionCell,playerCard) {
     document.getElementById('edit-goalkeeper-modal').classList.remove('hidden');
 
     // Populate modal with current data
-    document.getElementById('edit-goalkeeper-name').value = goalkeeperformData.name || '';
-    document.getElementById('edit-goalkeeper-photo').value = goalkeeperformData.photo || '';
-    document.getElementById('edit-Goalkeeper-nationality').value = goalkeeperformData.Nationality || '';
-    document.getElementById('edit-Goalkeeper-flag').value = goalkeeperformData.flag || '';
-    document.getElementById('edit-Goalkeeper-logo').value = goalkeeperformData.logo || '';
-    document.getElementById('edit-Goalkeeper-rating').value = goalkeeperformData.rating || '';
-    document.getElementById('edit-Goalkeeper-diving').value = goalkeeperformData.diving || '';
-    document.getElementById('edit-Goalkeeper-handling').value = goalkeeperformData.handling || '';
-    document.getElementById('edit-Goalkeeper-kicking').value = goalkeeperformData.kicking || '';
-    document.getElementById('edit-Goalkeeper-reflexes').value = goalkeeperformData.reflexes || '';
-    document.getElementById('edit-Goalkeeper-speed').value = goalkeeperformData.speed || '';
-    document.getElementById('edit-Goalkeeper-positionning').value = goalkeeperformData.positioning || '';
+    document.getElementById('edit-goalkeeper-name').value = goalkeeperformData.name;
+    document.getElementById('edit-goalkeeper-photo').value = goalkeeperformData.photo ;
+    document.getElementById('edit-Goalkeeper-nationality').value = goalkeeperformData.Nationality ;
+    document.getElementById('edit-Goalkeeper-flag').value = goalkeeperformData.flag ;
+    document.getElementById('edit-Goalkeeper-logo').value = goalkeeperformData.logo ;
+    document.getElementById('edit-Goalkeeper-rating').value = goalkeeperformData.rating ;
+    document.getElementById('edit-Goalkeeper-diving').value = goalkeeperformData.diving ;
+    document.getElementById('edit-Goalkeeper-handling').value = goalkeeperformData.handling ;
+    document.getElementById('edit-Goalkeeper-kicking').value = goalkeeperformData.kicking ;
+    document.getElementById('edit-Goalkeeper-reflexes').value = goalkeeperformData.reflexes ;
+    document.getElementById('edit-Goalkeeper-speed').value = goalkeeperformData.speed ;
+    document.getElementById('edit-Goalkeeper-positionning').value = goalkeeperformData.positioning ;
 
     // Handle save action
     document.getElementById('save-edit-goalkeeper').addEventListener('click', function (event) {
@@ -594,27 +718,6 @@ function openGoalkeeperEditModal(goalkeeperformData,positionCell,playerCard) {
         document.getElementById('edit-goalkeeper-modal').classList.add('hidden');
     });
 }
-
-
-// --------------------- [Save to LocalStorage Function] -----------------------
-function saveToLocalStorage() {
-    localStorage.setItem('playerformData', JSON.stringify(formData)); // Save formData to localStorage
-}
-
-
-//------------------------[Load formData from LocalStorage on Page Load]---------
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     event.preventDefault();
-//     const savedformData = localStorage.getItem('playerformData');
-//     if (savedformData) {
-//         formformData = JSON.parse(savedformData);
-//         formformData.forEach(player => {
-//             const inputPhoto = player.photo ;
-//             const position = player.position || 'GK'; // Default to 'GK' if position is not provided
-//             createPlayerCard(player, position,inputPhoto); // Create the player card
-//         });
-//     }
-// });
 
 
 
